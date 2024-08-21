@@ -96,6 +96,7 @@
     var controller
     document.querySelector("#version").innerHTML = imageCompression.version;
     function compressImage(event, useWebWorker) {
+      var startTime = performance.now();
       var file = event.target.files[0];
       var logDom, progressDom;
       if (useWebWorker) {
@@ -131,6 +132,7 @@
       }
       imageCompression(file, options)
         .then(function (output) {
+          var endTime = performance.now();
           logDom.innerHTML +=
             ", output size:" + (output.size / 1024 / 1024).toFixed(2) + "mb";
           console.log("output", output);
@@ -140,7 +142,7 @@
             downloadLink +
             '" download="' +
             file.name +
-            '">download compressed image</a>';
+            '">download compressed image</a>,&nbsp; execution time: '+`${endTime-startTime}`+'ms';
           // document.getElementById('preview-after-compress').src = downloadLink
           return uploadToServer(output);
         })
