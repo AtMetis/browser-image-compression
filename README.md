@@ -216,6 +216,7 @@ If your website has CSP enabled and you want to use Web Worker (useWebWorker: tr
 
 ## Contribution
 1. fork the repo and git clone it
+3. run `npm install` # node version greater than `v14.21.3` (`lts/fermium`) is not supported
 2. run `npm run watch` # it will watch code change in lib/ folder and generate js in dist/ folder
 3. add/update code in lib/ folder
 4. try the code by opening example/development.html which will load the js in dist/ folder

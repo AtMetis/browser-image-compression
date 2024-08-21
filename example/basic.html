@@ -20,9 +20,11 @@
   <p>look at console to see logs</p>
   Options:<br />
   <label for="maxSizeMB">maxSizeMB:
-    <input type="number" id="maxSizeMB" name="maxSizeMB" value="0.5" /></label><br />
+    <input type="number" id="maxSizeMB" name="maxSizeMB" value="1" /></label><br />
   <label for="maxWidthOrHeight">maxWidthOrHeight:
-    <input type="number" id="maxWidthOrHeight" name="maxWidthOrHeight" value="1200" /></label>
+    <input type="number" id="maxWidthOrHeight" name="maxWidthOrHeight" value="1024" /></label><br />
+  <label for="alwaysKeepResolution">alwaysKeepResolution:
+    <input type="checkbox" id="alwaysKeepResolution" name="alwaysKeepResolution" value="false" /></label>    
   <hr />
   <div>
     <label for="web-worker">
@@ -142,12 +144,11 @@
         maxWidthOrHeight: parseFloat(
           document.querySelector("#maxWidthOrHeight").value
         ),
+        useWebWorker: useWebWorker,
         onProgress: onProgress,
         preserveExif: true,
         libURL: "https://cdn.jsdelivr.net/npm/browser-image-compression@"+selectedVersion+"/dist/browser-image-compression.js",
-        alwaysKeepResolution: true,
-        maxIteration: 100,
-        useWebWorker: false,
+        alwaysKeepResolution: document.querySelector("#alwaysKeepResolution").checked,
       };
       if (controller) {
         options.signal = controller.signal;
